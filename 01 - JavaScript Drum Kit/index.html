@@ -59,12 +59,18 @@
 
 <script>
  var run = (function addListeners() {
+  function removeColor(element) {
+     if (element.propertyName !== "transform") {
+      return;
+    }
+    else (element.target.classList.remove('playing'))
+  }
   window.addEventListener("keydown", function(e){ 
     var audioTarget = document.querySelector(`audio[data-key="${e.keyCode}"]`);
     audioTarget.play();
     var keyTarget = document.querySelector(`div[data-key="${e.keyCode}"]`);
     keyTarget.classList.add("playing");
-})
+    keyTarget.addEventListener("transitionend", removeColor)})
 })(run)
 
 
